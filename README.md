@@ -1,4 +1,4 @@
-## Deployment
+## Micro Job Board api setup
 
 - Clone the repository with the command `git clone`
 - `cd` into the project directory
