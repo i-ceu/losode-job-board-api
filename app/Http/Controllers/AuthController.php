@@ -37,7 +37,12 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $user = $this->authService->register($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('avatar')) {
+            $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+        }
+        $user = $this->authService->register($data);
 
         return response()->json([
             'status' => "success",
@@ -51,7 +56,8 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([
-            'message' => 'Logout successful'
+            'ststus'=> 'success',
+            'message' => 'Successfully looged out user.'
         ]);
     }
 

@@ -24,6 +24,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
+            'avatar' => 'nullable|file|mimes:jpeg,jpg,png|max:5120', // 5MB max
             'password' => 'required|string|min:8|same:confirm_password',
             'confirm_password' => 'required|string|min:8',
         ];

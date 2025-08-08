@@ -29,6 +29,7 @@ class AuthService
 
     public function register(array $data)
     {
+
         $user = User::create($data);
 
         return $user;

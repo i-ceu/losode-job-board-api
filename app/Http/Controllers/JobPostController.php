@@ -46,14 +46,19 @@ class JobPostController extends Controller
         ]);
 
         return response()->json([
+            'status' => 'success',
             'message' => 'Job created successfully',
-            'job' => new JobPostResource($job)
+            'data' => new JobPostResource($job)
         ], 201);
     }
 
     public function show(JobPost $job)
     {
-        return response()->json(new JobPostResource($job));
+        return response()->json(
+            [
+                'data' => new JobPostResource($job)
+            ]
+        );
     }
 
     public function update(UpdateJobRequest $request, JobPost $job)
@@ -68,6 +73,7 @@ class JobPostController extends Controller
         $job->update($data);
 
         return response()->json([
+            'status'=> 'success',
             'message' => 'Job updated successfully',
             'job' => new JobPostResource($job)
         ]);
@@ -83,7 +89,8 @@ class JobPostController extends Controller
         $job->delete();
 
         return response()->json([
-            'message' => 'Job deleted successfully'
+            'status' => 'success',
+            'message' => 'Job Successfully Deleted'
         ]);
     }
 
